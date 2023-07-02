@@ -26,6 +26,7 @@ public class Member {
     private boolean activate;
 
     @Enumerated(EnumType.STRING)
+    @ElementCollection
     private Set<Authority> authorities;
 
 }
