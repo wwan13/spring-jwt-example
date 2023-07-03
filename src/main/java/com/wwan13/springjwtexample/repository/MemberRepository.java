@@ -11,4 +11,5 @@ import java.util.Optional;
 public interface MemberRepository extends JpaRepository<Member, Long> {
     @EntityGraph(attributePaths = "authorities") // 쿼리를 수행할 때 Eager 조회로 authorities 정보를 가져옴
     Optional<Member> findOneWithAuthoritiesByUsername(String username);
+    Boolean existsByUsername(String username);
 }
