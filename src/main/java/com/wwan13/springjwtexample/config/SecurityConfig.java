@@ -54,13 +54,14 @@ public class SecurityConfig {
                 )
 
                 .addFilterBefore(corsFilter, UsernamePasswordAuthenticationFilter.class)
-                .exceptionHandling(exeptionHandling -> exeptionHandling
+                .exceptionHandling(exceptionHandling -> exceptionHandling
                         .accessDeniedHandler(jwtAccessDeniedHandler)
                         .authenticationEntryPoint(jwtAuthenticationEntryPoint)
                 )
 
                 .authorizeRequests(authorizeHttpRequest -> authorizeHttpRequest
-                        .antMatchers("/**").permitAll()
+                        .antMatchers("/api/**").authenticated()
+                        .antMatchers("/auth/**").permitAll()
                         .requestMatchers(PathRequest.toH2Console()).permitAll()
                         .anyRequest().authenticated()
                 )
